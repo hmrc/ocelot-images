@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20181004144549_SecondCreate.cs" />
+    <Compile Remove="Migrations\20181004144549_SecondCreate.Designer.cs" />
+    <Compile Remove="Migrations\20181004144734_SecondCreate.cs" />
+    <Compile Remove="Migrations\20181004144734_SecondCreate.Designer.cs" />
+    <Compile Remove="Migrations\20181004145559_SecondCreate.cs" />
+    <Compile Remove="Migrations\20181004145559_SecondCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+</Project>

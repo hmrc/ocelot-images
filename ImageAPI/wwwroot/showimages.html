@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Showing all images</title>
+    <style>
+        table {
+            font-family: Arial, sans-serif;
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #0066CC;
+            color: white;
+        }
+
+        td {
+            border: 1px solid;
+            padding: 5px;
+        }
+
+        .btn {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <a link href="edit.html">Approve Images</a> 
+ <!--   <div>
+        <form action="javascript:void(0);" id="theform" method="POST" onsubmit="addItem();">
+            <input type=submit id="Id" class="Submit" value="Up">
+            <input type=submit id="Id" class="Submit" value="Down">
+            <input type="date" id="demo">
+            <input type="text" id="type" value="type"><br>
+            <input type="text" id="process" value="process">
+            <input type="text" id="who" value="00000">
+            <input type="text" id="last15" value="last15">
+        </form>
+    </div> -->
+    <p id="demoo"></p>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Image Path</th>
+            <th>Description</th>
+            <th>UploadedDate</th>
+            <th>Name</th>
+            <th>Placeholder</th>
+            <th>ApprovedByPID</th>
+            <th>UploadedByPID</th>
+            <th>ApprovedDate</th>
+            <th>Approved</th>
+            <!--   <th>Approve <input type="checkbox" value="name" checked></th>  -->
+
+        </tr>
+        <tbody id="todos"></tbody>
+    </table>
+
+    <script type="text/javascript">
+        uri = "api/image";
+        let todos = null;
+        $(document).ready(function () {
+            getData();
+        });
+
+        function getData() {
+            $.ajax({
+                type: 'Get',
+                dataType: 'json',
+                url: uri,
+                success: function (data) {
+                   $('#todos').empty();
+                    $.each(data, function (key, item) {
+                        var checked = '';
+                        if (item.approved) {
+                            checked = 'checked';
+                        }
+                        $('<tr>' +
+                            '<td>' + item.id + '</td>' +
+                            '<td><image src='+ item.path +'></td>' +
+                            '<td>' + item.description + '</td>' +
+                            '<td>' + item.uploadedDate + '</td>' +
+                            '<td>' + item.imageName + '</td>' +
+                            '<td>' + item.placeholder + '</td>' +
+                            '<td>' + item.approvedByPID + '</td>' +
+                            '<td>' + item.uploadedByPID + '</td>' +
+                            '<td>' + item.approvedDate + '</td>' +                           
+                            '<td><input disabled=true type="checkbox" ' + checked + '></td>' +
+                            '</tr>').appendTo($('#todos'));
+                    });
+                    todos = data;
+                }
+
+            });
+        }     
+
+    </script>
+</body>
+</html>

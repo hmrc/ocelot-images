@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+    <title></title>
+</head>
+<body>
+    <a link href="edit.html">Approve Images</a>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" id="files" name="files" accept="image/*" />
+        <input type="text" id="description" >
+        <input type="number" id="placeHolder">
+        <input type="button" id="upload" value="Upload Selected Files" />
+    </form>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            uri = "api/image/Upload";
+            $("#upload").click(function (evt) {
+                var fileUpload = $("#files").get(0);
+                var files = fileUpload.files;
+                var description = $("#description").val();
+                var placeholder = $("#placeHolder").val();
+                var data = new FormData();
+                data.append("files", files[0]);
+                data.append("description", description);
+                data.append("placeholder", placeholder);
+
+                $.ajax({
+                    type: "POST",
+                    url: uri,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (message) {
+                        alert(message);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        alert("There was error uploading files!");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

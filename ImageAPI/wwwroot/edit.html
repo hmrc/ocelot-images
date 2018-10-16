@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Showing all images</title>
+    <style>
+        #spoiler {
+            display: none;
+        }
+
+        table {
+            font-family: Arial, sans-serif;
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #0066CC;
+            color: white;
+        }
+
+        td {
+            border: 1px solid;
+            padding: 5px;
+        }
+
+        .btn {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <h1>Approve Images</h1>
+    <a link href="index.html">Add images</a>
+
+    <div id="spoiler">
+        <h3>Edit</h3>
+        <form class="my-form">
+            <input type="hidden" id="edit-id">
+            <input type="checkbox" id="edit-isComplete">
+            <input type="text" id="edit-name">
+            <input type="submit" value="Edit" /> <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+        </form>
+    </div>
+
+    <p id="demoo"></p>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Image Path</th>
+            <th>Description</th>
+            <th>UploadedDate</th>
+            <th>Name</th>
+            <th>Placeholder</th>
+            <th>ApprovedByPID</th>
+            <th>UploadedByPID</th>
+            <th>ApprovedDate</th>
+            <th>Approved</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tbody id="todos"></tbody>
+    </table>
+
+    <script type="text/javascript">
+        uri = "api/image";
+        let todos = null;
+        $(document).ready(function () {
+            getData();
+        });
+
+        function getData() {
+            $.ajax({
+                type: 'Get',
+                dataType: 'json',
+                url: 'api/image/Approve',
+               // data: { 'approve': false }, dont to set it default value of bool is false
+                success: function (result) {
+                    $('#todos').empty();
+                    $.each(result, function (key, item) {
+                        var checked = '';
+                        if (item.approved) {
+                            checked = 'checked';
+                        }
+                        $('<tr>' +
+                            '<td>' + item.id + '</td>' +
+                            '<td><image src=' + item.path + '></td>' +
+                            '<td>' + item.description + '</td>' +
+                            '<td>' + item.uploadedDate + '</td>' +
+                            '<td>' + item.imageName + '</td>' +
+                            '<td>' + item.placeholder + '</td>' +
+                            '<td>' + item.approvedByPID + '</td>' +
+                            '<td>' + item.uploadedPID + '</td>' +
+                            '<td>' + item.approvedDate + '</td>' +                           
+                            '<td><input disabled=true type="checkbox" ' + checked + '></td>' +
+                            '<td><button onclick="editItem(' + item.id + ')">Edit</button></td>' +
+                            '<td><button onclick="deleteItem(' + item.id + ')">Delete</button></td>' +
+                            '</tr>').appendTo($('#todos'));
+                    });
+                    todos = result;
+                }
+
+            });
+        }
+
+        function deleteItem(id) {
+            $.ajax({
+                url: uri + '/' + id,
+                type: 'DELETE',
+                success: function (result) {
+                    getData();
+                }
+            });
+        };
+
+        function editItem(id) {
+            $.each(todos, function (key, item) {
+                if (item.id === id) {
+                    var editName = $('#edit-name');
+                    editName.val(item.imageName);
+
+                    var editId = $('#edit-id');
+                    editId.val(item.id);
+
+                    var editIsComplete = $('#edit-isComplete');
+                    editIsComplete.prop("checked", item.approved);
+                }
+            });
+            $('#spoiler').css({ 'display': 'block' });
+        };
+
+        $('.my-form').on('submit', function () {
+            var item = {
+                'imageName': $('#edit-name').val(),
+                'approved': $('#edit-isComplete').is(':checked'),
+                'id': $('#edit-id').val()
+            };
+
+            $.ajax({
+                url: uri + '/' + $('#edit-id').val(),
+                type: 'PUT',
+                accepts: 'application/json',
+                contentType: 'application/json',
+                data: JSON.stringify(item),
+                success: function (result) {
+                    getData();
+                }
+            });
+            closeInput();
+            return false;
+        });
+
+        function closeInput() {
+            $('#spoiler').css({ 'display': 'none' });
+        }
+
+    </script>
+</body>
+</html>

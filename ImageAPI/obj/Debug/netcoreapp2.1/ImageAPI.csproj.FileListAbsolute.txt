@@ -1,0 +1,14 @@
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\bin\Debug\netcoreapp2.1\ImageAPI.deps.json
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\bin\Debug\netcoreapp2.1\ImageAPI.runtimeconfig.json
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\bin\Debug\netcoreapp2.1\ImageAPI.runtimeconfig.dev.json
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\bin\Debug\netcoreapp2.1\ImageAPI.dll
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\bin\Debug\netcoreapp2.1\ImageAPI.pdb
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.csproj.CoreCompileInputs.cache
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.RazorAssemblyInfo.cache
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.RazorAssemblyInfo.cs
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.AssemblyInfoInputs.cache
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.AssemblyInfo.cs
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.RazorTargetAssemblyInfo.cache
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.dll
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.pdb
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.csprojAssemblyReference.cache
