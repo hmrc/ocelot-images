@@ -88,7 +88,7 @@ namespace ImageAPI.Controllers
             }
             if (files == null)
             {
-                return Content("file not selected");
+                return Content("file not selected not working");
             }
             result = description;
             // var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", files.GetFilename());
