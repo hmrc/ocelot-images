@@ -11,3 +11,4 @@ C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\Imag
 C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.RazorTargetAssemblyInfo.cache
 C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.dll
 C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.pdb
+C:\Users\7216841\Desktop\Dev\APIs\ImageAPI\ImageAPI\obj\Debug\netcoreapp2.1\ImageAPI.csprojAssemblyReference.cache

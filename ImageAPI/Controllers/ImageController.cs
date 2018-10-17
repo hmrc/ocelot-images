@@ -96,6 +96,7 @@ namespace ImageAPI.Controllers
             image.ImageName = files.GetFilename();
             image.Path = path.Substring(path.LastIndexOf(@"\") - 7);
             image.Description = description;
+            image.UploadedDate = DateTime.Now;
             image.Placeholder = placeholder;
             image.UploadedByPID = Convert.ToInt32(userPid);
 
