@@ -13,8 +13,9 @@ namespace ImageAPI.Models
         public int Id { get; set; }
         [Required]
         public string ImageName { get; set; }
+        [StringLength(60, MinimumLength = 5)]
         [Required]
-        public int Placeholder { get; set; }
+        public string Placeholder { get; set; }
         public bool Approved { get; set; }         
         [StringLength(60, MinimumLength = 5)]
         [Required]

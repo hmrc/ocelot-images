@@ -77,7 +77,7 @@ namespace ImageAPI.Controllers
         }
 
         [HttpPost, Route("Upload")]
-        public async Task<IActionResult> UploadFile(string description, int placeholder, IFormFile files)
+        public async Task<IActionResult> UploadFile(string description, string placeholder, IFormFile files)
         {
             var userPid = User.Identity.Name.Substring(User.Identity.Name.IndexOf(@"\") + 1);
             var image = new Image();
@@ -88,7 +88,7 @@ namespace ImageAPI.Controllers
             }
             if (files == null)
             {
-                return Content("file not selected not working");
+                return Content("file not selected");
             }
             result = description;
             // var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", files.GetFilename());
