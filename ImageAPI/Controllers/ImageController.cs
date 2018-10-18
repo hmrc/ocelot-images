@@ -77,7 +77,7 @@ namespace ImageAPI.Controllers
         }
 
         [HttpPost, Route("Upload")]
-        public async Task<IActionResult> UploadFile(string description, int placeholder, IFormFile files)
+        public async Task<IActionResult> UploadFile(string description, string placeholder, IFormFile files)
         {
             var userPid = User.Identity.Name.Substring(User.Identity.Name.IndexOf(@"\") + 1);
             var image = new Image();
@@ -96,6 +96,7 @@ namespace ImageAPI.Controllers
             image.ImageName = files.GetFilename();
             image.Path = path.Substring(path.LastIndexOf(@"\") - 7);
             image.Description = description;
+            image.UploadedDate = DateTime.Now;
             image.Placeholder = placeholder;
             image.UploadedByPID = Convert.ToInt32(userPid);
 
