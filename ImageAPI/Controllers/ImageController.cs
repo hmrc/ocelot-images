@@ -28,15 +28,15 @@ namespace ImageAPI.Controllers
         }
         // GET api/values
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAllImages()
         {
             var images = await _context.Images.ToListAsync();
             return Ok(images);
         }
 
-        [HttpGet, Route("Search")]
-        // to test on chrome  http://localhost:41446/api/image/Search?id=1&id=2&id=41
-        public async Task<IActionResult> GetByID(List<int> id)
+        [HttpGet, Route("SearchImageByID")]
+        // to test on chrome  http://localhost:41446/api/image/SearchImageByID?id=1&id=2&id=41
+        public async Task<IActionResult> GetImageByID(List<int> id)
         {
             var items = await _context.Images.Where(x => id.Contains(x.Id)).ToListAsync();
             if (items == null)
@@ -46,9 +46,9 @@ namespace ImageAPI.Controllers
             return Ok(items);
         }
 
-        [HttpGet, Route("SearchByPID")]
-        // to test on chrome  http://localhost:41446/api/image/SearchByPID?pid=1234567
-        public async Task<IActionResult> SearchByPID(int pid)
+        [HttpGet, Route("SearchImageByPID")]
+        // to test on chrome  http://localhost:41446/api/image/SearchImageByPID?pid=1234567
+        public async Task<IActionResult> SearchImageByPID(int pid)
         {
             var items = await _context.Images.Where(x => x.UploadedByPID == pid).ToListAsync();
             if (items == null)
@@ -58,9 +58,9 @@ namespace ImageAPI.Controllers
             return Ok(items);
         }
 
-        [HttpGet, Route("Approve")]
-        // to test on chrome http://localhost:41446/api/image/Approve?approved=true
-        public async Task<IActionResult> Get(bool approved)
+        [HttpGet, Route("ApproveImages")]
+        // to test on chrome http://localhost:41446/api/image/ApproveImages?approved=true
+        public async Task<IActionResult> GetAllApprovedImages(bool approved)
         {
             var userPid = int.Parse(User.Identity.Name.Substring(User.Identity.Name.IndexOf(@"\") + 1));
 
@@ -76,8 +76,8 @@ namespace ImageAPI.Controllers
             return Ok(items);
         }
 
-        [HttpPost, Route("Upload")]
-        public async Task<IActionResult> UploadFile(string description, string placeholder, IFormFile files)
+        [HttpPost, Route("UploadImage")]
+        public async Task<IActionResult> UploadImages(string description, string placeholder, IFormFile files)
         {
             var userPid = User.Identity.Name.Substring(User.Identity.Name.IndexOf(@"\") + 1);
             var image = new Image();
@@ -107,17 +107,16 @@ namespace ImageAPI.Controllers
 
             _context.Add(image);
             await _context.SaveChangesAsync();
-            return Content("Model is working fine" + "\n" + path.Substring(52) + "\n" + result);
+            return Ok("Model is working fine" + "\n" + path.Substring(52) + "\n" + result);
 
             // return Ok("File uploaded successfully");
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]Image item)
+        public async Task<IActionResult> UpdateImageDetails(int id, [FromBody]Image item)
         {
-            var userPid = User.Identity.Name.Substring(User.Identity.Name.IndexOf(@"\") + 1);
-            //var result = _context.Images.Find(id);
+            var userPid = User.Identity.Name.Substring(User.Identity.Name.IndexOf(@"\") + 1);            
             var result = _context.Images.FirstOrDefault(t => t.Id == id);
             if (result == null)
             {
@@ -135,7 +134,7 @@ namespace ImageAPI.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteImage(int id)
         {
             var result = await _context.Images.FindAsync(id);
             if (result == null)
