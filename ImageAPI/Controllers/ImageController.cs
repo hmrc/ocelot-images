@@ -58,6 +58,19 @@ namespace ImageAPI.Controllers
             return Ok(items);
         }
 
+        [HttpGet, Route("SearchImageByPlaceholder")]
+        // to test on chrome /api/image/SearchImageByPlaceholder?placeholder="hello"
+        public async Task<IActionResult> GetImageByPlaceholder(string placeholder)
+        {
+          var result = await _context.Images.Where(x => x.Placeholder == placeholder).ToListAsync();
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
         [HttpGet, Route("ApproveImages")]
         // to test on chrome http://localhost:41446/api/image/ApproveImages?approved=true
         public async Task<IActionResult> GetAllApprovedImages(bool approved)
