@@ -40,7 +40,9 @@
             <input type="hidden" id="edit-id">
             <input type="checkbox" id="edit-isComplete">
             <input type="text" id="edit-name">
-            <input type="submit" value="Edit" /> <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+           
+            <input type="submit" value="Edit">
+            <a onclick="closeInput()" aria-label="Close">&#10006;</a>
         </form>
     </div>
 
@@ -100,7 +102,6 @@
                     });
                     todos = result;
                 }
-
             });
         }
 
@@ -120,11 +121,14 @@
                     var editName = $('#edit-name');
                     editName.val(item.imageName);
 
+                    //var editPlaceholder = $('#edit-placeholder');
+                    //editPlaceholder.val(item.placeholder);
+
                     var editId = $('#edit-id');
                     editId.val(item.id);
 
                     var editIsComplete = $('#edit-isComplete');
-                    editIsComplete.prop("checked", item.approved);
+                    editIsComplete.prop("checked", item.approved);                 
                 }
             });
             $('#spoiler').css({ 'display': 'block' });
@@ -133,13 +137,14 @@
         $('.my-form').on('submit', function () {
             var item = {
                 'imageName': $('#edit-name').val(),
+                //'placeholder': $('#edit-placeholder').val(),
                 'approved': $('#edit-isComplete').is(':checked'),
                 'id': $('#edit-id').val()
             };
 
             $.ajax({
                 url: uri + '/' + $('#edit-id').val(),
-                type: 'PUT',
+                type: 'Patch',
                 accepts: 'application/json',
                 contentType: 'application/json',
                 data: JSON.stringify(item),

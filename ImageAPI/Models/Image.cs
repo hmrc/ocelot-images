@@ -13,6 +13,7 @@ namespace ImageAPI.Models
         public int Id { get; set; }
         [Required]
         public string ImageName { get; set; }
+
         [StringLength(60, MinimumLength = 5)]
         [Required]
         public string Placeholder { get; set; }
@@ -22,7 +23,7 @@ namespace ImageAPI.Models
         public string Description { get; set; }
         public string Path { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime? UploadedDate { get; set; }     
+        public DateTime? UploadedDate { get; set; }    
         public int? ApprovedByPID { get; set; }      
         public int? UploadedByPID { get; set; }
         public DateTime? ApprovedDate { get; set; }    
