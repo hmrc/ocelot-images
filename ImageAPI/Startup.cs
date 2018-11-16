@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ImageAPI.Contexts;
+using ImageAPI.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -37,7 +38,8 @@ namespace ImageAPI
               new PhysicalFileProvider(
                   Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 
-            services.AddMvc();
+             services.AddMvc(options => options.Filters.Add(typeof(ValidateModelAttribute)));
+            // services.AddMvc();
 
             services.Configure<IISOptions>(options =>
             {

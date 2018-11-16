@@ -94,11 +94,6 @@ namespace ImageAPI.Controllers
         {
             var userPid = User.Identity.Name.Substring(User.Identity.Name.IndexOf(@"\") + 1);
             var image = new Image();
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             if (files == null)
             {
                 return Content("file not selected");
@@ -117,17 +112,14 @@ namespace ImageAPI.Controllers
             {
                 await files.CopyToAsync(stream);
             }
-
             _context.Add(image);
             await _context.SaveChangesAsync();
-            return Ok("Model is working fine" + "\n" + path.Substring(52) + "\n" + result);
-
-            // return Ok("File uploaded successfully");
+            return Ok("Model is working fine" + "\n" + path.Substring(52) + "\n" + result);            
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateImageDetails(int id, [FromBody]Image item)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateImageDetails(int id, [FromBody]ImagePatch item)
         {
             var userPid = User.Identity.Name.Substring(User.Identity.Name.IndexOf(@"\") + 1);            
             var result = _context.Images.FirstOrDefault(t => t.Id == id);
@@ -139,7 +131,8 @@ namespace ImageAPI.Controllers
             result.Approved = item.Approved;
             result.ImageName = item.ImageName;
             result.ApprovedByPID = Convert.ToInt32(userPid);
-            result.ApprovedDate = DateTime.Today;
+           // result.Placeholder = item.Placeholder;
+            result.ApprovedDate = DateTime.Now;
             _context.Images.Update(result);
             await _context.SaveChangesAsync();
             return new NoContentResult();
